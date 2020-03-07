@@ -1,3 +1,5 @@
+### `Use Chrome browser`
+
 ### Live project to use
 
 [https://suryap666.github.io/weather-app/#/](https://suryap666.github.io/weather-app/#/)
