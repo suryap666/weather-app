@@ -1,6 +1,7 @@
-import {FeelsLike, Forecast, List} from "../model/Forecast";
+import {FeelsLike, List} from "../model/Forecast";
 import React, {useState} from "react";
 import styled from "styled-components";
+import grey from '@material-ui/core/colors/grey';
 
 const Daily = styled.ul`
   margin: 0;
@@ -53,6 +54,24 @@ const WeatherDiv = styled.div`
     }
   }`;
 
+const DateRow = styled.div`
+  margin-left: 20px;
+  float: left;
+`;
+
+const CurrentDate = styled.h2`
+  margin: 0;
+`;
+
+const WeatherType = styled.h3`
+  margin: 0;
+  font-weight: normal;
+  text-transform: capitalize;
+  float: left;
+  color: ${grey[900]};
+  font-weight: bold;
+`;
+
 const getCurrentTemp = (temps: FeelsLike) => {
     const hours = new Date(Date.now()).getHours();
 
@@ -67,6 +86,17 @@ const getCurrentTemp = (temps: FeelsLike) => {
     }
 };
 
+const getDay = (index: number) => {
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return days[index];
+};
+
+export const getDateString = (seconds: number) => {
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const date = new Date(seconds * 1000);
+    return `${getDay(date.getDay())}, ${months[date.getMonth()]} ${date.getDate()} ${date.getFullYear()}`;
+};
+
 const isDay = () => {
     const hours = new Date(Date.now()).getHours();
     return hours >= 7 && hours <= 20;
@@ -76,28 +106,34 @@ const WeatherToday: React.FunctionComponent<IWeatherProps> = props => {
     const [tempUnit, setTempUnit] = useState('C');
 
     return (
-        <WeatherDiv>
-            <Temperature>{`${getCurrentTemp(props.day.temp)}°${tempUnit}`}</Temperature>
-            <i className={`wi wi-owm-${isDay() ? 'day' : 'night'}-${props.day.weather[0].id}`}/>
-            <Daily>
-                <li>
-                    <p>Morning</p>
-                    <p>{`${Math.round(props.day.temp.morn)}°${tempUnit}`}</p>
-                </li>
-                <li>
-                    <p>Day</p>
-                    <p>{`${Math.round(props.day.temp.day)}°${tempUnit}`}</p>
-                </li>
-                <li>
-                    <p>Evening</p>
-                    <p>{`${Math.round(props.day.temp.eve)}°${tempUnit}`}</p>
-                </li>
-                <li>
-                    <p>Night</p>
-                    <p>{`${Math.round(props.day.temp.night)}°${tempUnit}`}</p>
-                </li>
-            </Daily>
-        </WeatherDiv>
+        <div>
+            <DateRow>
+                <CurrentDate>{getDateString(props.day.dt)}</CurrentDate>
+                <WeatherType>{props.day.weather[0].description}</WeatherType>
+            </DateRow>
+            <WeatherDiv>
+                <Temperature>{`${getCurrentTemp(props.day.temp)}°${tempUnit}`}</Temperature>
+                <i className={`wi wi-owm-${isDay() ? 'day' : 'night'}-${props.day.weather[0].id}`}/>
+                <Daily>
+                    <li>
+                        <p>Morning</p>
+                        <p>{`${Math.round(props.day.temp.morn)}°${tempUnit}`}</p>
+                    </li>
+                    <li>
+                        <p>Day</p>
+                        <p>{`${Math.round(props.day.temp.day)}°${tempUnit}`}</p>
+                    </li>
+                    <li>
+                        <p>Evening</p>
+                        <p>{`${Math.round(props.day.temp.eve)}°${tempUnit}`}</p>
+                    </li>
+                    <li>
+                        <p>Night</p>
+                        <p>{`${Math.round(props.day.temp.night)}°${tempUnit}`}</p>
+                    </li>
+                </Daily>
+            </WeatherDiv>
+        </div>
     );
 };
 

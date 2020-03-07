@@ -1,28 +1,35 @@
 import React, {useState} from "react";
 import {List} from "../model/Forecast";
+import {getDateString} from "./WeatherToday";
+import styled from "styled-components";
+
+const WeatherDiv = styled.div`
+  padding-top: 20px;
+  &:hover  {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+`;
 
 const WeatherRest: React.FunctionComponent<IWeatherProps> = props => {
     const [tempUnit, setTempUnit] = useState('C');
-    const getDay = (index: number) => {
-        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        return days[index];
-    };
 
     return (
-        <li key={props.day.dt}>
-            <h3>{getDay(new Date(props.day.dt * 1000).getDay())}</h3>
+        <WeatherDiv onClick={() => props.onClick(props.day)}>
+            <h3>{getDateString(props.day.dt)}</h3>
             <i className={`wi wi-owm-${props.day.weather[0].id}`}/>
             <p>
-                {`${Math.round(
-                    Object.values(props.day.temp).reduce(
-                        (sum, current) => sum + current) / Object.values(props.day.temp).length)}°${tempUnit}`}
+                Average: {`${Math.round(
+                Object.values(props.day.temp).reduce(
+                    (sum, current) => sum + current) / Object.values(props.day.temp).length)}°${tempUnit}`}
             </p>
-        </li>
+        </WeatherDiv>
     );
 };
 
 interface IWeatherProps {
     day: List;
+    onClick: (day:List) => any;
 }
 
 export default WeatherRest;

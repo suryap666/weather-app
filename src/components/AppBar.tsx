@@ -7,6 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import {createStyles, fade, Theme, makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import {CssBaseline} from "@material-ui/core";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -68,6 +69,7 @@ const SearchBar: React.FunctionComponent<IAppBarProps> = props => {
 
     return (
         <div className={classes.root}>
+            <CssBaseline/>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton
@@ -87,7 +89,7 @@ const SearchBar: React.FunctionComponent<IAppBarProps> = props => {
                         </div>
                         <form onSubmit={props.getForeCast}>
                             <InputBase
-                                placeholder="Search…"
+                                placeholder="Search City…"
                                 classes={{
                                     root: classes.inputRoot,
                                     input: classes.inputInput,
@@ -100,7 +102,8 @@ const SearchBar: React.FunctionComponent<IAppBarProps> = props => {
                 </Toolbar>
             </AppBar>
         </div>
-    );
+    )
+        ;
 };
 
 interface IAppBarProps {
