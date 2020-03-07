@@ -1,9 +1,8 @@
 import {FeelsLike, List} from "./model/Forecast";
 import {deepOrange} from "@material-ui/core/colors";
 
-const tempUnit = 'C';
-
 class Shared {
+    public tempUnit = 'C';
     public sunnyColor = deepOrange[50];
     public moreThanTwentyColor = 'orange';
     public bothSunnyAndMoreThanTwenty =  {backgroundImage: `linear-gradient(red, ${this.sunnyColor})`};
@@ -11,20 +10,20 @@ class Shared {
     public averageTemperature(day: List) {
         return `${Math.round(
             Object.values(day.temp).reduce(
-                (sum, current) => sum + current) / Object.values(day.temp).length)}°${tempUnit}`
+                (sum, current) => sum + current) / Object.values(day.temp).length)}°${this.tempUnit}`
     }
 
     public getCurrentTemp = (temps: FeelsLike) => {
         const hours = new Date(Date.now()).getHours();
 
         if (hours >= 6 && hours < 12) {
-            return `${temps.morn}°${tempUnit}`;
+            return `${temps.morn}°${this.tempUnit}`;
         } else if (hours >= 12 && hours < 18) {
-            return `${temps.day}°${tempUnit}`;
+            return `${temps.day}°${this.tempUnit}`;
         } else if (hours >= 18 && hours < 24) {
-            return `${temps.eve}°${tempUnit}`;
+            return `${temps.eve}°${this.tempUnit}`;
         } else {
-            return `${temps.night}°${tempUnit}`;
+            return `${temps.night}°${this.tempUnit}`;
         }
     };
 
@@ -50,7 +49,7 @@ class Shared {
     };
 
     public isTemperatureGreater = (temperature: string,  baseTemperature: number = 20) => {
-        let valueToCompare = parseInt(temperature.replace('°C', ''))
+        let valueToCompare = parseInt(temperature.replace('°C', ''));
         return valueToCompare > baseTemperature;
     }
 }

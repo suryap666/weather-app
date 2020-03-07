@@ -1,5 +1,5 @@
 import {List} from "../model/Forecast";
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 import grey from '@material-ui/core/colors/grey';
 import Shared from "../Shared";
@@ -81,8 +81,6 @@ const WeatherType = styled.h3`
 
 
 const WeatherSelected: React.FunctionComponent<IWeatherProps> = props => {
-    const [tempUnit, setTempUnit] = useState('C');
-
     return (
         <div className={'weather-today-today'}>
             <DateRow>
@@ -95,19 +93,19 @@ const WeatherSelected: React.FunctionComponent<IWeatherProps> = props => {
                 <Daily>
                     <li>
                         <p>Morning</p>
-                        <span>{`${props.day.temp.morn}°${tempUnit}`}</span>
+                        <span>{`${props.day.temp.morn}°${Shared.tempUnit}`}</span>
                     </li>
                     <li>
                         <p>Afternoon</p>
-                        <span>{`${props.day.temp.day}°${tempUnit}`}</span>
+                        <span>{`${props.day.temp.day}°${Shared.tempUnit}`}</span>
                     </li>
                     <li>
                         <p>Evening</p>
-                        <span>{`${props.day.temp.eve}°${tempUnit}`}</span>
+                        <span>{`${props.day.temp.eve}°${Shared.tempUnit}`}</span>
                     </li>
                     <li>
                         <p>Night</p>
-                        <span>{`${props.day.temp.night}°${tempUnit}`}</span>
+                        <span>{`${props.day.temp.night}°${Shared.tempUnit}`}</span>
                     </li>
                 </Daily>
 
