@@ -4,8 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import {blue} from "@material-ui/core/colors";
 import {Forecast, List} from "../model/Forecast";
-import WeatherToday from "./WeatherToday";
-import WeatherRest from "./WeatherRest";
+import WeatherSelected from "./WeatherSelected";
+import WeatherCards from "./WeatherCards";
 import CustomizedSnackbars from "./CustomizedSnackbars";
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -34,14 +34,14 @@ const WeatherGrids: React.FunctionComponent<IWeatherGridProps> = props => {
                     <Grid container spacing={3}>
                         <Grid item xs={12}>
                             <Paper className={classes.paper}>
-                                <WeatherToday day={props.headerDay ?? props.forecast?.list[0]}/>
+                                <WeatherSelected day={props.headerDay ?? props.forecast?.list[0]}/>
                             </Paper>
                         </Grid>
 
                         {props.forecast.list.map(day => (
                             <Grid item xs={2} key={day.dt}>
                                 <Paper className={classes.paper}>
-                                    <WeatherRest day={day} onClick={props.onClickUpdate}/>
+                                    <WeatherCards day={day} onClick={props.onClickUpdate}/>
                                 </Paper>
                             </Grid>
                         ))}

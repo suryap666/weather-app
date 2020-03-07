@@ -75,7 +75,7 @@ const WeatherType = styled.h3`
 
 
 
-const WeatherToday: React.FunctionComponent<IWeatherProps> = props => {
+const WeatherSelected: React.FunctionComponent<IWeatherProps> = props => {
     const [tempUnit, setTempUnit] = useState('C');
 
     return (
@@ -114,5 +114,5 @@ interface IWeatherProps {
     day: List;
 }
 
-export default WeatherToday;
+export default WeatherSelected;
 

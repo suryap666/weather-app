@@ -12,7 +12,7 @@ const WeatherDiv = styled.div`
   }
 `;
 
-const WeatherRest: React.FunctionComponent<IWeatherProps> = props => {
+const WeatherCards: React.FunctionComponent<IWeatherProps> = props => {
 
     return (
         <WeatherDiv
@@ -33,4 +33,4 @@ interface IWeatherProps {
     onClick: (day: List) => any;
 }
 
-export default WeatherRest;
+export default WeatherCards;
