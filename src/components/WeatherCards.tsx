@@ -10,14 +10,31 @@ const WeatherDiv = styled.div`
     transform: scale(1.1);
     cursor: pointer;
   }
-`;
+  i {
+    font-size: 60px;
+   }`;
+
 
 const WeatherCards: React.FunctionComponent<IWeatherProps> = props => {
+    function getStyle() {
+        const weatherDescription = props.day.weather[0].description;
+        const isTempGreaterThanTwenty = Shared.isTemperatureGreater(Shared.averageTemperature(props.day));
+        let color: string = '#448aff';
+        if (isTempGreaterThanTwenty && weatherDescription === 'sky is clear') {
+            return Shared.bothSunnyAndMoreThanTwenty;
+        } else if (isTempGreaterThanTwenty) {
+            color = Shared.moreThanTwentyColor;
+        } else if (weatherDescription === 'sky is clear') {
+            color = Shared.sunnyColor;
+        }
+
+        return {backgroundColor: color};
+    }
 
     return (
         <WeatherDiv
             onClick={() => props.onClick(props.day)}
-            style={{backgroundColor: Shared.isTemperatureGreater(Shared.averageTemperature(props.day)) ? 'orange' : '#448aff'}}
+            style={getStyle()}
         >
             <h3>{Shared.getDateString(props.day.dt)}</h3>
             <i className={`wi wi-owm-${props.day.weather[0].id}`}/>

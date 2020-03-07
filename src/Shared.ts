@@ -1,8 +1,13 @@
 import {FeelsLike, List} from "./model/Forecast";
+import {deepOrange} from "@material-ui/core/colors";
 
 const tempUnit = 'C';
 
 class Shared {
+    public sunnyColor = deepOrange[50];
+    public moreThanTwentyColor = 'orange';
+    public bothSunnyAndMoreThanTwenty =  {backgroundImage: `linear-gradient(red, ${this.sunnyColor})`};
+
     public averageTemperature(day: List) {
         return `${Math.round(
             Object.values(day.temp).reduce(
@@ -13,13 +18,13 @@ class Shared {
         const hours = new Date(Date.now()).getHours();
 
         if (hours >= 6 && hours < 12) {
-            return `${Math.round(temps.morn)}°${tempUnit}`;
+            return `${temps.morn}°${tempUnit}`;
         } else if (hours >= 12 && hours < 18) {
-            return `${Math.round(temps.day)}°${tempUnit}`;
+            return `${temps.day}°${tempUnit}`;
         } else if (hours >= 18 && hours < 24) {
-            return `${Math.round(temps.eve)}°${tempUnit}`;
+            return `${temps.eve}°${tempUnit}`;
         } else {
-            return `${Math.round(temps.night)}°${tempUnit}`;
+            return `${temps.night}°${tempUnit}`;
         }
     };
 
