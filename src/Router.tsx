@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import App from "./components/App";
 import 'weathericons/css/weather-icons.min.css';
 
@@ -17,6 +17,4 @@ const Router: React.FunctionComponent<IRouterProps> = props => {
 
 export default Router;
 
-interface IRouterProps {
-
-}
+interface IRouterProps {}

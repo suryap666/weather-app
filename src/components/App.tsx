@@ -33,7 +33,6 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
         }
     };
 
-
     return (
         <MuiThemeProvider>
             <div className={'app'}>

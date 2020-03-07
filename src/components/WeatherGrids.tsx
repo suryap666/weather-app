@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -12,23 +12,18 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             flexGrow: 1,
-            padding: '30px',
         },
         paper: {
             padding: theme.spacing(2),
             textAlign: 'center',
-            color: '#FFFFFF',
             background: blue.A200,
-            minHeight: '200px'
+            minHeight: '200px',
         },
     }),
 );
 
 const WeatherGrids: React.FunctionComponent<IWeatherGridProps> = props => {
     const classes = useStyles();
-
-
-
 
     return (
         props.forecast === null ?

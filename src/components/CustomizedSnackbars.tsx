@@ -23,7 +23,7 @@ const CustomizedSnackbars: React.FunctionComponent<ICustomizedSnackbarsProps> = 
         <div className={classes.root}>
             <Snackbar open={true} autoHideDuration={6000}>
                 <Alert severity={props.showMessage}>
-                    {props.showMessage === 'info' ? 'Search for a city!' : 'City name does not exists'}
+                    {props.showMessage === 'info' ? 'Search for a city!' : 'City name does not exist'}
                 </Alert>
             </Snackbar>
             {/*<Alert severity="error">This is an error message!</Alert>*/}
