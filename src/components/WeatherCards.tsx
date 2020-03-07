@@ -30,13 +30,15 @@ const WeatherCards: React.FunctionComponent<IWeatherProps> = props => {
 
         return {backgroundColor: color};
     }
+    const [day, date] = Shared.getDateString(props.day.dt).split(',');
 
     return (
         <WeatherDiv
             onClick={() => props.onClick(props.day)}
             style={getStyle()}
         >
-            <h3>{Shared.getDateString(props.day.dt)}</h3>
+            <h3>{date}</h3>
+            <h4>{day}</h4>
             <i className={`wi wi-owm-${props.day.weather[0].id}`}/>
             <p>
                 Average: {Shared.averageTemperature(props.day)}
