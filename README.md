@@ -1,3 +1,5 @@
+### `Use Chrome browser`
+
 ### Live project to use
 
 [https://suryap666.github.io/weather-app/#/](https://suryap666.github.io/weather-app/#/)
@@ -21,7 +23,7 @@ _ Click on the tile to get temperature for that time of the day (morning/afterno
 ### Project Dependencies and build steps
 
 - Install Node
-- Run `NPM install` to install all the packages from package.json inside the project root folder.
+- Run `NPM install` in terminal to install all the packages from package.json inside the project root folder.
 - If you prefer, you can use yarn as the package manager.
 
 ### Available Scripts
