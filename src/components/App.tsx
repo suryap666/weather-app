@@ -12,7 +12,7 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
     const [forecast, setForecast] = useState<Forecast | null>(null);
     const [showMessage, setShowMessage] =
         useState<ErrorMessageType>
-        ({type: 'info', message: 'Type city name and press enter to search for a city forecast'});
+        ({type: 'info', message: 'Type city name and press enter to search for the weather forecast'});
     const [headerDay, setHeaderDay] = useState<List>();
 
     const handleSearchInput = (cityName: string) => {
