@@ -6,7 +6,6 @@ import {blue} from "@material-ui/core/colors";
 import {Forecast, List} from "../model/Forecast";
 import WeatherSelected from "./WeatherSelected";
 import WeatherCards from "./WeatherCards";
-import CustomizedSnackbars from "./CustomizedSnackbars";
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -26,37 +25,30 @@ const WeatherGrids: React.FunctionComponent<IWeatherGridProps> = props => {
     const classes = useStyles();
 
     return (
-        props.forecast === null ?
-            <CustomizedSnackbars searchValue={props.searchValue} showMessage={props.showMessage}/>
-            :
-            (
-                <div className={classes.root}>
-                    <Grid container spacing={3}>
-                        <Grid item xs={12}>
-                            <Paper className={classes.paper}>
-                                <WeatherSelected day={props.headerDay ?? props.forecast?.list[0]}/>
-                            </Paper>
-                        </Grid>
-
-                        {props.forecast.list.map(day => (
-                            <Grid item xs={2} key={day.dt}>
-                                <Paper className={classes.paper}>
-                                    <WeatherCards day={day} onClick={props.onClickUpdate}/>
-                                </Paper>
-                            </Grid>
-                        ))}
+        <div className={classes.root}>
+            <Grid container spacing={3}>
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>
+                        <WeatherSelected day={props.headerDay ?? props.forecast.list[0]}/>
+                    </Paper>
+                </Grid>
+                {props.forecast.list.map(day => (
+                    <Grid item xs={2} key={day.dt}>
+                        <Paper className={classes.paper}>
+                            <WeatherCards day={day} onClick={props.onClickUpdate}/>
+                        </Paper>
                     </Grid>
-                </div>
-            )
+                ))}
+            </Grid>
+        </div>
     );
 };
 
 export default WeatherGrids;
 
 interface IWeatherGridProps {
-    forecast: Forecast | null;
+    forecast: Forecast;
     searchValue: string;
-    showMessage: 'success' | 'info' | 'warning' | 'error';
     onClickUpdate: (day: List) => any;
     headerDay: List | undefined;
 }

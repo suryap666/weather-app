@@ -4,6 +4,7 @@ import WeatherGrids from "./WeatherGrids";
 import ForeCastServices from "../services/ForeCastServices";
 import {Forecast, List} from "../model/Forecast";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import CustomizedSnackbars from "./CustomizedSnackbars";
 
 const App: React.FunctionComponent<IAppProps> = (props) => {
 
@@ -30,7 +31,7 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
         } else {
             setForecast(null);
             setShowMessage('error');
-        }
+    }
     };
 
     return (
@@ -40,13 +41,14 @@ const App: React.FunctionComponent<IAppProps> = (props) => {
                     getForeCast={getWeatherForeCastByCity}
                     textChanged={handleSearchInput}
                 />
-                <WeatherGrids
-                    forecast={forecast}
-                    searchValue={searchValue}
-                    showMessage={showMessage}
-                    onClickUpdate={onClickUpdate}
-                    headerDay={headerDay}
-                />
+                {forecast === null ?
+                    <CustomizedSnackbars showMessage={showMessage}/> :
+                    <WeatherGrids
+                        forecast={forecast}
+                        searchValue={searchValue}
+                        onClickUpdate={onClickUpdate}
+                        headerDay={headerDay}
+                    />}
             </div>
         </MuiThemeProvider>
     );

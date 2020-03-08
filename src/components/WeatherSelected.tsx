@@ -35,7 +35,7 @@ const Daily = styled.ul`
   }`;
 
 const Temperature = styled.h1`
-  font-size: 120px;
+  font-size: 50px;
   margin-right: 70px;
 
   @media (max-width: 700px) {

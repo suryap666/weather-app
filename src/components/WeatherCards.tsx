@@ -4,14 +4,14 @@ import styled from "styled-components";
 import Shared from "../Shared";
 
 const WeatherDiv = styled.div`
-  padding: 20px;
+  padding: 10px;
   border-radius: 15px;
   &:hover  {
     transform: scale(1.1);
     cursor: pointer;
   }
   i {
-    font-size: 60px;
+    font-size: 40px;
    }`;
 
 

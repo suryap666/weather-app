@@ -21,21 +21,16 @@ const CustomizedSnackbars: React.FunctionComponent<ICustomizedSnackbarsProps> = 
 
     return (
         <div className={classes.root}>
-            <Snackbar open={true} autoHideDuration={6000}>
+            <Snackbar open={true}>
                 <Alert severity={props.showMessage}>
-                    {props.showMessage === 'info' ? 'Search for a city!' : 'City name does not exist'}
+                    {props.showMessage === 'info' ? 'Search for a city!' : `City name does not exist`}
                 </Alert>
             </Snackbar>
-            {/*<Alert severity="error">This is an error message!</Alert>*/}
-            {/*<Alert severity="warning">This is a warning message!</Alert>*/}
-            {/*<Alert severity="info">This is an information message!</Alert>*/}
-            {/*<Alert severity="success">This is a success message!</Alert>*/}
         </div>
     );
 };
 
 interface ICustomizedSnackbarsProps {
-    searchValue: string;
     showMessage: 'success' | 'info' | 'warning' | 'error';
 }
 
