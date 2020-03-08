@@ -3,6 +3,8 @@ import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, {AlertProps} from '@material-ui/lab/Alert';
 import {makeStyles, Theme} from '@material-ui/core/styles';
 
+export type ErrorMessageType = { type: 'success' | 'info' | 'warning' | 'error', message: string };
+
 function Alert(props: AlertProps) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -22,8 +24,8 @@ const CustomizedSnackbars: React.FunctionComponent<ICustomizedSnackbarsProps> = 
     return (
         <div className={classes.root}>
             <Snackbar open={true}>
-                <Alert severity={props.showMessage}>
-                    {props.showMessage === 'info' ? 'Search for a city!' : `City name does not exist`}
+                <Alert severity={props.showMessage.type}>
+                    {props.showMessage.message}
                 </Alert>
             </Snackbar>
         </div>
@@ -31,7 +33,7 @@ const CustomizedSnackbars: React.FunctionComponent<ICustomizedSnackbarsProps> = 
 };
 
 interface ICustomizedSnackbarsProps {
-    showMessage: 'success' | 'info' | 'warning' | 'error';
+    showMessage: ErrorMessageType;
 }
 
 export default CustomizedSnackbars;
